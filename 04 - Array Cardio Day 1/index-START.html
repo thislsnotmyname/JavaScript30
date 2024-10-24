@@ -38,29 +38,42 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-
+    const fifteen = inventors.filter((inventor) => inventor.year < 1600 && inventor.year > 1499);
+    console.table(fifteen);
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
-
+    const full_name = inventors.map((inventor) => `${inventor.first} ${inventor.last}`);
+    console.table(full_name);
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-
+    let age_order_array_copy = inventors.slice();
+    const age_order = age_order_array_copy.sort((inventor1, inventor2) => inventor1.year - inventor2.year);
+    console.table(age_order);
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-
+    const total_years = inventors.reduce((agg, inventor) => agg + (inventor.passed - inventor.year), 0);
+    console.table(total_years);
     // 5. Sort the inventors by years lived
-
+    const longest_lived = inventors.sort((a, b) => (a.passed - a.year) - (b.passed - b.year));
+    console.table(longest_lived);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
-
+    // const category = document.querySelector(".mw-pages > .mw-content-ltr");
+    // const links = Array.from(category.querySelectorAll("a"));
+    // const de = links.map(link => link.textContent).filter(name => name.includes("de"));
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-
+    const by_last_name = people.sort((a, b) => (b < a) ? 1 : -1);
+    console.table(by_last_name);
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    const instances = data.reduce((agg, value) => {
+      if (!agg[value]) agg[value] = 0;
+      agg[value]++;
+      return agg;
+    }, {});
+    console.table(instances);
   </script>
 </body>
 </html>
